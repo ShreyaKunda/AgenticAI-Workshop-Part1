@@ -1,0 +1,7 @@
+Product,Sales,Region
+Laptop,120,North
+Phone,185,South
+Tablet,95,East
+Monitor,140,West
+Keyboard,110,North
+Headphones,160,South

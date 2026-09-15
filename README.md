@@ -1,147 +1,206 @@
-# Agentic AI Workshop — Part 1
+# Crew AI Workshop Part 1
 
-This repository contains the hands-on exercises for Part 1 of the Agentic AI workshop.
+A hands-on workshop for building AI agents and multi-agent workflows using **CrewAI** and **Ollama**.
 
-The workshop uses **CrewAI + Ollama + a local LLM**, so no paid API key is required.
+---
 
-## Before You Begin
+# Workshop Goal
 
-Install:
+By the end of Part 1, you will be able to:
 
-- Python 3.11
-- Git
-- Ollama
+* Create an AI agent
+* Define an agent's role, goal, and backstory
+* Assign tasks to an agent
+* Give an agent a tool
+* Create specialized agents
+* Pass information between agents
+* Build a multi-agent Crew
 
-Make sure Ollama is running and download the model used in this workshop:
+---
+
+# 1. Before You Begin
+
+Before starting the exercises, make sure the following are installed.
+
+| Software | Required | Check Command |
+| --- | --- | --- |
+| Python 3.11 | Yes | `python --version` |
+| Git | Yes | `git --version` |
+| Ollama | Yes | `ollama --version` |
+
+You will also need the `llama3.2` model in Ollama.
+
+## Check Python
+
+Run:
+
+```bash
+python --version
+```
+
+Python 3.11 is recommended for the workshop so everyone uses the same environment.
+
+If `python` does not work on macOS/Linux, try:
+
+```bash
+python3 --version
+```
+
+## Check Git
+
+```bash
+git --version
+```
+
+## Check Ollama
+
+```bash
+ollama --version
+```
+
+If Ollama is not installed, download it from:
+
+https://ollama.com
+
+Then restart your terminal and run the command again.
+
+## Check Your Ollama Model
+
+Run:
+
+```bash
+ollama list
+```
+
+You should see `llama3.2` in the list.
+
+If you do not have it, download it using:
 
 ```bash
 ollama pull llama3.2
 ```
 
-You can test it with:
+---
+
+# 2. Test Ollama
+
+Before continuing, make sure Ollama is working correctly.
+
+Run:
 
 ```bash
 ollama run llama3.2
 ```
 
-## Clone the Repository
+Try asking:
+
+```text
+What is an AI agent?
+```
+
+If you receive a response, Ollama is working correctly.
+
+To exit the Ollama session, use:
+
+```text
+/bye
+```
+
+or press `Ctrl+C`.
+
+---
+
+# 3. Clone the Repository
+
+Run:
 
 ```bash
 git clone https://github.com/ShreyaKunda/AgenticAI-Workshop-Part1.git
 cd AgenticAI-Workshop-Part1
 ```
 
-## Create a Virtual Environment
+You should see files and folders such as:
 
-### Windows
+```text
+README.md
+requirements.txt
+exercises
+data
+solutions
+```
+
+---
+
+# 4. Create a Virtual Environment
+
+A virtual environment keeps the workshop dependencies separate from other Python projects.
+
+## Windows
 
 ```bash
 py -3.11 -m venv .venv
 .venv\Scripts\activate
 ```
 
-### macOS / Linux
+## macOS / Linux
 
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
 ```
 
-## Install Dependencies
+After activation, you should see `(.venv)` at the beginning of your terminal.
+
+---
+
+# 5. Install the Workshop Dependencies
+
+Make sure your virtual environment is activated.
+
+Then run:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Workshop Exercises
+This installs CrewAI for the workshop. Ollama runs separately as the local LLM provider.
 
-| Exercise | Topic | Main idea |
-| --- | --- | --- |
-| 01 | First Agent | LLM → Agent |
-| 02 | Agent + Task | Agent = who, Task = what |
-| 03 | Agent + Tool | Giving an agent external capabilities |
-| 04 | Specialized Agents | Passing output between agents |
-| 05 | Create a Crew | Orchestrating multiple agents |
+You can verify CrewAI with:
 
-The exercises are intentionally small. The goal is to understand how agentic systems are constructed rather than copy a large application.
+```bash
+pip show crewai
+```
 
-## Suggested Workshop Flow
+---
 
-1. Run Exercise 1 and observe the basic agent.
-2. Add a Task in Exercise 2.
-3. Give the agent a custom file-reading tool in Exercise 3.
-4. Build a small two-agent workflow in Exercise 4.
-5. Replace the manual workflow with a Crew in Exercise 5.
-6. Discuss hallucinations, evaluation, failure handling, and human oversight.
+# 6. Run the Workshop Exercises
 
-## Repository Structure
+The exercises are located inside:
 
 ```text
-AgenticAI-Workshop-Part1/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── exercises/
-│   ├── 01_first_agent/
-│   │   └── agent.py
-│   ├── 02_agent_task/
-│   │   ├── README.md
-│   │   └── agent_with_task.py
-│   ├── 03_agent_tool/
-│   │   ├── README.md
-│   │   └── agent_with_tool.py
-│   ├── 04_specialized_agents/
-│   │   ├── README.md
-│   │   └── multi_agent_workflow.py
-│   └── 05_create_crew/
-│       ├── README.md
-│       └── crew.py
-├── data/
-│   └── sample_data.txt
-└── solutions/
-    ├── 01_first_agent.py
-    ├── 02_agent_task.py
-    ├── 03_agent_tool.py
-    ├── 04_specialized_agents.py
-    └── 05_create_crew.py
+exercises/
 ```
 
-## Workshop Philosophy
+Start with Exercise 1 and follow the exercises in order. Each exercise introduces one new concept and builds toward creating a multi-agent Crew.
 
-You do not need to memorize CrewAI syntax. Focus on the architecture:
+## Exercise Progression
 
-**Agent → Task → Tool → Multiple Agents → Crew**
-
-Ask why each component exists and what capability it adds.
-
-## Troubleshooting
-
-### Ollama connection error
-
-Make sure Ollama is running and that the model is available:
-
-```bash
-ollama list
+```text
+Exercise 1: Agent
+       ↓
+Exercise 2: Agent + Task
+       ↓
+Exercise 3: Agent + Tool
+       ↓
+Exercise 4: Agent → Agent
+       ↓
+Exercise 5: Multi-Agent Crew
 ```
 
-If needed:
+Solutions are provided in the `solutions/` folder for reference after attempting each exercise.
 
-```bash
-ollama pull llama3.2
-```
+---
 
-### Python version
+# Workshop Philosophy
 
-This workshop is designed for Python 3.11.
-
-### Import errors
-
-Make sure the virtual environment is activated and dependencies are installed:
-
-```bash
-pip install -r requirements.txt
-```
-
-## Important
-
-The `solutions/` directory contains completed versions for reference. Try the exercises yourself before looking at the solutions.
+The exercises are intentionally small. The goal is to understand how agents, tasks, tools, and Crews fit together rather than simply copy a large application.

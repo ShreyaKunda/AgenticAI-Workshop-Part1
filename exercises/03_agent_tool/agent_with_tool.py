@@ -1,16 +1,20 @@
+from pathlib import Path
+
 from crewai import Agent, LLM
 from crewai.tools import tool
-from pathlib import Path
+
+
+BASE_DIR = Path(__file__).resolve().parents[2]
+DATA_FILE = BASE_DIR / "data" / "sample_data.txt"
+
 
 llm = LLM(
     model="ollama/llama3.2",
     base_url="http://localhost:11434"
 )
 
-BASE_DIR = Path(__file__).resolve().parents[2]
-DATA_FILE = BASE_DIR / "data" / "sample_data.txt"
 
-
+# TODO: This custom tool gives the agent access to the local data file.
 @tool("Read sample data")
 def read_sample_data() -> str:
     """Read the sample dataset provided for the workshop."""
@@ -26,6 +30,7 @@ researcher = Agent(
     llm=llm,
     verbose=True
 )
+
 
 # TODO: Change the question and observe how the agent uses its tool.
 result = researcher.kickoff(
